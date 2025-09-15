@@ -9,14 +9,11 @@ services:
       - "2019:2019" # Caddy admin API (optional)
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile # Main Caddy configuration
-      - caddy_data:/data                 # Caddy data (certificates, etc.)
-      - caddy_config:/config             # Caddy config (internal state)
+      - data:/data                 # Caddy data (certificates, etc.)
+      - config:/config             # Caddy config (internal state)
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN} # Your Cloudflare API token
-      - CADDY_EMAIL=${CADDY_EMAIL}                   # Your email for Let's Encrypt notifications
-      - ACME_AGREE=true                              # Agree to Let's Encrypt terms
-      - TZ=${TZ}                                     # Timezone (e.g., "America/New_York")
 
 volumes:
-  caddy_data:
-  caddy_config:
+  data:
+  config:

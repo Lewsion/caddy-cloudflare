@@ -4,21 +4,20 @@
 # 2. Make sure CLOUDFLARE_API_TOKEN and CADDY_EMAIL are set in your environment or .env file
 # 3. For more config examples, see https://caddyserver.com/docs/caddyfile
 
-{
-    # Email for Let's Encrypt registration (from env)
-    email {env.CADDY_EMAIL}
-    # Use Cloudflare DNS for ACME challenges (from env)
-    acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-}
-
 # Serve static files for your domain
 example.com {
     root * /srv
     file_server
+    tls {
+        dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+    }
 }
 
 # ---
 # To use as a reverse proxy, uncomment and edit below:
 # api.example.com {
 #     reverse_proxy http://your-backend:8080
+#    tls {
+#        dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+#    }
 # }
