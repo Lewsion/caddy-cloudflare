@@ -54,13 +54,10 @@ services:
       - caddy_config:/config
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
-      - CADDY_EMAIL=${CADDY_EMAIL}
-      - ACME_AGREE=true
-      - TZ=${TZ}
 
 volumes:
-  caddy_data:
-  caddy_config:
+  data:
+  config:
 ````
 
 ---
@@ -74,12 +71,6 @@ You can provide environment variables in a `.env` file (e.g., `env.example`) to 
 # Get this from: https://dash.cloudflare.com/profile/api-tokens
 # Required permissions: Zone:Zone:Read, Zone:DNS:Edit
 CLOUDFLARE_API_TOKEN=your_cloudflare_api_token_here
-
-# Optional: Email for Let's Encrypt notifications
-CADDY_EMAIL=your-email@example.com
-
-# Agree to ACME Subscriber Agreement
-ACME_AGREE=true
 ```
 
 > Tip: Copy `env.example` to `.env` and set your values. Docker Compose will automatically pick them up.
@@ -94,15 +85,12 @@ A basic Caddyfile to get started:
 yourdomain.com {
     tls {
         dns cloudflare
-        email your-email@example.com
     }
-
     reverse_proxy localhost:8080
 }
 ```
 
 * Replace `yourdomain.com` with your domain.
-* Replace `your-email@example.com` with your email.
 * Ensure `CLOUDFLARE_API_TOKEN` is set in your environment for DNS-01 challenge automation.
 
 ---
