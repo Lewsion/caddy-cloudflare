@@ -1,6 +1,6 @@
 services:
   caddy:
-    image: ghcr.io/Lewsion/caddy-cloudflare:latest # Prebuilt Caddy with Cloudflare DNS plugin
+    image: ghcr.io/lewsion/caddy-cloudflare:latest # Prebuilt Caddy with Cloudflare DNS plugin
     container_name: caddy-cloudflare
     restart: unless-stopped
     ports:
@@ -13,6 +13,9 @@ services:
       - caddy_config:/config             # Caddy config (internal state)
     environment:
       - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN} # Your Cloudflare API token
+      - CADDY_EMAIL=${CADDY_EMAIL}                   # Your email for Let's Encrypt notifications
+      - ACME_AGREE=true                              # Agree to Let's Encrypt terms
+      - TZ=${TZ}                                     # Timezone (e.g., "America/New_York")
 
 volumes:
   caddy_data:
