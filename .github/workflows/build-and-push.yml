@@ -4,8 +4,14 @@ on:
   push:
     branches: [ main ]
     tags: [ 'v*' ]
+    paths:
+      - 'Dockerfile'        # Trigger only if Dockerfile changes
+      - 'docker/**'         # Or any files in a docker/ folder
   pull_request:
     branches: [ main ]
+    paths:
+      - 'Dockerfile'        # Trigger only if Dockerfile changes
+      - 'docker/**'         # Or any files in a docker/ folder
   workflow_dispatch:
 
 # Permissions for GITHUB_TOKEN
