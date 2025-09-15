@@ -1,0 +1,25 @@
+version: 2
+updates:
+  # 1. Watch Dockerfiles for base image updates
+  - package-ecosystem: "docker"
+    directory: "/"           # Location of your Dockerfile
+    schedule:
+      interval: "weekly"     # Check for updates weekly
+    commit-message:
+      prefix: "chore"        # Commit message prefix
+    ignore:
+      - dependency-name: "caddy" # Optional: if you want to pin certain images
+        versions: ["latest"]
+    allow:
+      - dependency-type: "direct" # Only update direct base images
+
+  # 2. Watch GitHub Actions in workflow files
+  - package-ecosystem: "github-actions"
+    directory: "/"           # Location of your workflow files
+    schedule:
+      interval: "weekly"     # Check weekly for new Action versions
+    commit-message:
+      prefix: "chore"
+    ignore:
+      - dependency-name: "actions/checkout"
+        versions: ["v4"]    # Keep using stable version if you want
