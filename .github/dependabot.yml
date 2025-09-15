@@ -7,10 +7,6 @@ updates:
       interval: "weekly"
     commit-message:
       prefix: "chore"
-    ignore:
-      # Example: ignore any base image older than v2.8
-      - dependency-name: "caddy"
-        versions: [">=2.0.0 <2.8.0"]
 
   # 2. GitHub Actions in workflows
   - package-ecosystem: "github-actions"
@@ -19,15 +15,4 @@ updates:
       interval: "weekly"
     commit-message:
       prefix: "chore"
-    ignore:
-      # Example: ignore any version below v4 for actions/checkout
-      - dependency-name: "actions/checkout"
-        versions: [">=v4.0.0 <v4.0.0"] # basically pins to v4 (no updates below v4)
 
-  # 3. Optional: npm dependencies (if you use Node.js)
-  - package-ecosystem: "npm"
-    directory: "/"  # Location of package.json
-    schedule:
-      interval: "weekly"
-    commit-message:
-      prefix: "chore"
