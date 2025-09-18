@@ -82,6 +82,10 @@ CLOUDFLARE_API_TOKEN=your_cloudflare_api_token_here
 A basic Caddyfile to get started:
 
 ```text
+trusted_proxies cloudflare {
+    interval 12h
+    timeout 15s
+}
 yourdomain.com {
     tls {
         dns cloudflare
